@@ -3,7 +3,8 @@ import sys
 import time
 
 
-website = 'browser.goto "' + sys.argv[1] + '"'
+WEBSITE = 'browser.goto "' + sys.argv[1] + '"'
+WAIT_TIME = int(sys.argv[2])
 
 def setupBrowserController():
 	controller = pexpect.spawn('/usr/bin/irb')
@@ -15,11 +16,11 @@ def setupBrowserController():
 	return controller
 
 def main():
-	print website
+	print WEBSITE 
 	browserController = setupBrowserController()
 	while (True):
-		browserController.sendline(website)
+		browserController.sendline(WEBSITE)
 		browserController.expect('>>')
-		time.sleep(2)
+		time.sleep(WAIT_TIME)
 if __name__ == '__main__':
 	main()
